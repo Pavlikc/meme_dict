@@ -1,11 +1,27 @@
-meme_dict = {
-            "КРИНЖ": "Что-то очень странное или стыдное",
-            "ЛОЛ": "Что-то очень смешное",
-            'РОФЛ':'шутка'
-            }
-word = input("Введите непонятное слово (большими буквами!): ")
+from func import *
+import discord
+from discord.ext import commands
+from time import sleep
 
-if word in meme_dict.keys():
-    print(meme_dict[word])
-else:
-    print('Такого слова нет')
+intents = discord.Intents.default()
+intents.message_content = True
+
+command_info = [
+    '1. .eco_facts - экологические советы',
+    '2. .info - все команды',
+]
+
+bot = commands.Bot(command_prefix='.', intents=intents)
+
+@bot.command()
+async def eco_facts(ctx):
+    await ctx.send(random_facts())
+
+@bot.command()
+async def info(ctx):
+    for i in command_info:
+        await ctx.send(i)
+
+bot.run('')
+
+

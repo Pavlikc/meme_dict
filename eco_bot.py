@@ -22,6 +22,10 @@ async def info(ctx):
     for i in command_info:
         await ctx.send(i)
 
+@bot.command()
+async def citations(ctx):
+    await ctx.send(random_citation())
+
 bot.run('')
 
 
